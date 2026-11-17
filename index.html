@@ -3,170 +3,590 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chocomania | Links</title>
-    
-    <!-- Google Fonts for Bold Typography -->
+    <title>Chocomania | Chocolates & Cakes Studio, Durg</title>
+    <meta name="description" content="Chocomania - freshly baked cakes and chocolates in Durg since 2008. Order on WhatsApp, call us, or find us on Google Maps.">
+    <meta name="theme-color" content="#23807D">
+    <link rel="icon" href="favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+
+    <!-- Fonts: serif display to match the logo + clean sans for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons for minimalist iconography -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS for layout and utilities -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'brutal': '6px 6px 0px 0px rgba(0,0,0,1)',
-                        'brutal-hover': '2px 2px 0px 0px rgba(0,0,0,1)',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         /* ==========================================================
-           🎨 CUSTOMIZATION PANEL
-           Change the variables below to update your bakery's branding
+           CUSTOMIZATION PANEL
            ========================================================== */
         :root {
-            /* 1. BRAND COLORS */
-            --color-background: #F4F0EA; /* A warm, light dough color */
-            --color-text: #111111;       /* Deep, bold black */
-            
-            --color-btn-bg: #111111;     /* Button background */
-            --color-btn-text: #F4F0EA;   /* Button text color */
-            
-            --color-btn-hover-bg: #E2DCD0; /* Button background on hover */
-            --color-btn-hover-text: #111111; /* Button text on hover */
+            --teal:        #23807D;  /* brand teal (from logo) */
+            --teal-dark:   #145553;
+            --teal-deep:   #0E3F3D;
+            --cream:       #FBF6EE;
+            --cream-dark:  #EFE5D6;
+            --choco:       #4A2C21;  /* chocolate accent */
+            --gold:        #E9B65A;
 
-                /* 2. IMAGES & LOGO */
-                /* Replace the URL with the link to your actual logo image */
-                --logo-image: url('images/black.png');
-            
-            /* Add a background image URL if you want one. 
-               Example: url('https://your-image-link.com/bg.jpg') */
-            --bg-image: none; 
-            
-            /* If you add a background image, this controls how dark the overlay is 
-               (0 is completely clear, 1 is completely black) to keep text readable */
-            --bg-overlay-opacity: 0; 
+            --bg-image:    url('images/Gemini_Generated_Image_6wdqb46wdqb46wdq.png');
+            --logo-image:  url('images/transparent.png'); /* white logo */
         }
 
-        /* ==========================================================
-           CORE STYLES (Powered by your variables above)
-           ========================================================== */
+        .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html, body { margin: 0; padding: 0; }
+
         body {
-            background-color: var(--color-background);
-            color: var(--color-text);
-            background-image: var(--bg-image);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            font-family: 'Outfit', system-ui, sans-serif;
+            color: var(--cream);
+            background-color: var(--teal);
             min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* Overlay for background images to ensure contrast */
+        /* Floral background (scaled slightly to crop the corner watermark) */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-background);
-            opacity: var(--bg-overlay-opacity);
+            inset: 0;
+            background: var(--bg-image) center / cover no-repeat;
+            transform: scale(1.12);
+            z-index: -2;
+        }
+        /* Soft vignette for readability */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(14,63,61,0) 0%, rgba(14,63,61,.45) 100%);
             z-index: -1;
+            pointer-events: none;
         }
 
-        .logo-placeholder {
-            background-image: var(--logo-image);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: none;
-            background-color: transparent;
+        main {
+            width: 100%;
+            max-width: 30rem;
+            padding: 2.5rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
         }
 
-        .link-button {
-            background-color: var(--color-btn-bg);
-            color: var(--color-btn-text);
-            border: 3px solid var(--color-btn-bg);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        /* ---------- Logo & header ---------- */
+        .logo {
+            width: min(78vw, 20rem);
+            aspect-ratio: 1 / 1;
+            background: var(--logo-image) center / 135% no-repeat; /* zoom past the empty padding in the PNG */
+            filter: drop-shadow(0 6px 14px rgba(0,0,0,.25));
+            margin-bottom: -1.5rem;
+            animation: rise .7s ease-out both;
         }
 
-        .link-button:hover, .link-button:focus {
-            background-color: var(--color-btn-hover-bg);
-            color: var(--color-btn-hover-text);
-            border-color: var(--color-text);
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 0 0 .35rem;
+            animation: rise .7s .1s ease-out both;
+        }
+        .subline {
+            text-align: center;
+            font-size: .95rem;
+            opacity: .85;
+            margin: 0 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: .35rem;
+            animation: rise .7s .15s ease-out both;
+        }
+
+        /* ---------- Link buttons ---------- */
+        nav { width: 100%; display: flex; flex-direction: column; gap: .9rem; }
+
+        .link-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            padding: .95rem 1.25rem;
+            border-radius: 999px;
+            background: var(--cream);
+            color: var(--teal-deep);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid var(--cream);
+            box-shadow: 0 4px 0 var(--teal-deep), 0 10px 20px rgba(0,0,0,.18);
+            transition: transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease;
+            cursor: pointer;
+            font-family: inherit;
+            animation: rise .6s ease-out both;
+        }
+        .link-btn:nth-child(1) { animation-delay: .2s; }
+        .link-btn:nth-child(2) { animation-delay: .27s; }
+        .link-btn:nth-child(3) { animation-delay: .34s; }
+        .link-btn:nth-child(4) { animation-delay: .41s; }
+        .link-btn:nth-child(5) { animation-delay: .48s; }
+
+        .link-btn:hover, .link-btn:focus-visible {
             transform: translateY(-2px);
+            box-shadow: 0 6px 0 var(--teal-deep), 0 14px 24px rgba(0,0,0,.22);
+            outline: none;
         }
-        
-        .link-button:active {
-            transform: translateY(2px);
+        .link-btn:focus-visible { border-color: var(--gold); }
+        .link-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 var(--teal-deep), 0 4px 10px rgba(0,0,0,.18);
         }
 
+        .link-btn .icon {
+            flex: none;
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.45rem;
+            color: #fff;
+            background: var(--teal);
+        }
+        .link-btn .label { flex: 1; text-align: left; line-height: 1.2; }
+        .link-btn .label small { display: block; font-weight: 400; font-size: .8rem; opacity: .7; }
+        .link-btn .arrow { font-size: 1.2rem; opacity: .5; transition: transform .2s ease, opacity .2s ease; }
+        .link-btn:hover .arrow { transform: translateX(3px); opacity: 1; }
+
+        .icon.whatsapp  { background: #25D366; }
+        .icon.call      { background: var(--teal); }
+        .icon.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .icon.maps      { background: #EA4335; }
+
+        /* Feedback button - highlighted */
+        .link-btn.feedback {
+            background: var(--choco);
+            color: var(--cream);
+            border-color: var(--gold);
+            box-shadow: 0 4px 0 #2a1812, 0 10px 20px rgba(0,0,0,.25);
+            margin-top: .4rem;
+        }
+        .link-btn.feedback:hover, .link-btn.feedback:focus-visible {
+            box-shadow: 0 6px 0 #2a1812, 0 14px 24px rgba(0,0,0,.3);
+        }
+        .link-btn.feedback .icon { background: var(--gold); color: var(--choco); }
+        .badge {
+            position: absolute;
+            top: -.7rem;
+            right: 1.25rem;
+            background: var(--gold);
+            color: var(--choco);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            padding: .2rem .6rem;
+            border-radius: 999px;
+            box-shadow: 0 2px 6px rgba(0,0,0,.25);
+            animation: wiggle 2.8s 1.2s ease-in-out infinite;
+        }
+
+        footer {
+            padding: 1.25rem 1rem 1.75rem;
+            text-align: center;
+            font-size: .85rem;
+            opacity: .75;
+        }
+
+        /* ---------- Feedback modal ---------- */
+        dialog {
+            width: min(92vw, 28rem);
+            max-height: 92dvh;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 0;
+            background: var(--cream);
+            color: var(--teal-deep);
+            box-shadow: 0 25px 60px rgba(0,0,0,.4);
+            overflow: auto;
+        }
+        dialog::backdrop { background: rgba(14,63,61,.65); backdrop-filter: blur(3px); }
+        dialog[open] { animation: pop .25s ease-out; }
+
+        .modal-head {
+            background: var(--teal);
+            color: var(--cream);
+            padding: 1.4rem 1.5rem 1.2rem;
+            position: relative;
+        }
+        .modal-head h2 {
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 .25rem;
+            font-size: 1.5rem;
+        }
+        .modal-head p { margin: 0; opacity: .9; font-size: .95rem; }
+        .close-btn {
+            position: absolute;
+            top: .8rem;
+            right: .8rem;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,.15);
+            color: inherit;
+            font-size: 1.2rem;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+        .close-btn:hover { background: rgba(255,255,255,.3); }
+
+        form { padding: 1.4rem 1.5rem 1.5rem; display: grid; gap: 1rem; }
+
+        .field label, .field legend {
+            display: block;
+            font-weight: 600;
+            font-size: .9rem;
+            margin-bottom: .35rem;
+            padding: 0;
+        }
+        .field input[type="text"], .field input[type="tel"], .field textarea {
+            width: 100%;
+            padding: .75rem .9rem;
+            font: inherit;
+            color: var(--teal-deep);
+            background: #fff;
+            border: 2px solid var(--cream-dark);
+            border-radius: .8rem;
+            transition: border-color .15s ease;
+        }
+        .field textarea { resize: vertical; min-height: 5.5rem; }
+        .field input:focus, .field textarea:focus { outline: none; border-color: var(--teal); }
+        .field input:user-invalid { border-color: #c0392b; }
+        fieldset.field { border: none; margin: 0; padding: 0; }
+
+        /* Star rating (radio buttons, right-to-left trick for hover fill) */
+        .stars {
+            display: inline-flex;
+            flex-direction: row-reverse;
+            gap: .2rem;
+        }
+        .stars input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .stars label {
+            font-size: 2rem;
+            color: #d6cbb9;
+            cursor: pointer;
+            margin: 0;
+            transition: color .15s ease, transform .15s ease;
+        }
+        .stars label:hover { transform: scale(1.15); }
+        .stars input:checked ~ label,
+        .stars label:hover,
+        .stars label:hover ~ label { color: var(--gold); }
+        .stars input:focus-visible + label { outline: 2px solid var(--teal); border-radius: 4px; }
+
+        .error { color: #c0392b; font-size: .85rem; min-height: 1em; margin: 0; }
+
+        .submit-btn {
+            width: 100%;
+            padding: .95rem;
+            border: none;
+            border-radius: 999px;
+            background: var(--choco);
+            color: var(--cream);
+            font: inherit;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            transition: background .2s ease, transform .1s ease;
+        }
+        .submit-btn:hover { background: #5d3a2c; }
+        .submit-btn:active { transform: translateY(1px); }
+        .fine-print { font-size: .78rem; opacity: .65; text-align: center; margin: 0; }
+
+        /* Success view */
+        .success { padding: 1.75rem 1.5rem 1.75rem; text-align: center; display: none; }
+        dialog.done form { display: none; }
+        dialog.done .success { display: block; }
+        .success .big-icon { font-size: 3rem; color: var(--teal); }
+        .success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: .25rem 0 .5rem; }
+        .success p { margin: 0 0 1rem; }
+        .coupon {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+            border: 2px dashed var(--teal);
+            background: #fff;
+            border-radius: 1rem;
+            padding: .8rem 1rem;
+            margin: 0 0 1rem;
+        }
+        .coupon code {
+            font-family: 'Outfit', monospace;
+            font-size: clamp(1.05rem, 5vw, 1.35rem);
+            font-weight: 700;
+            letter-spacing: .05em;
+            white-space: nowrap;
+            color: var(--choco);
+        }
+        .copy-btn {
+            border: none;
+            background: var(--teal);
+            color: #fff;
+            border-radius: .6rem;
+            padding: .5rem .75rem;
+            font: inherit;
+            font-weight: 600;
+            font-size: .85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+        }
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            width: 100%;
+            padding: .9rem;
+            border-radius: 999px;
+            background: #25D366;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .wa-btn:hover { background: #1ebe5a; }
+
+        /* ---------- Animations ---------- */
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        @keyframes pop  { from { transform: scale(.95) translateY(8px); } to { transform: none; } }
+        @keyframes wiggle {
+            0%, 85%, 100% { transform: rotate(0); }
+            88% { transform: rotate(-6deg); }
+            92% { transform: rotate(6deg); }
+            96% { transform: rotate(-3deg); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center p-6 sm:p-10 selection:bg-black selection:text-white">
+<body>
 
-    <!-- MAIN CONTAINER -->
-    <main class="w-full max-w-lg mx-auto flex flex-col items-center animate-fade-in-up mt-8 mb-16">
-        
+    <main>
         <!-- LOGO -->
-        <div class="logo-placeholder w-48 h-48 sm:w-56 sm:h-56 mb-6 transition-transform hover:scale-105 duration-300"></div>
+        <h1 class="logo" role="img" aria-label="Chocomania - Est. 2008"></h1>
 
-        <!-- HEADER & BIO -->
-        <div class="text-center mb-10 w-full">
-            <h1 class="text-4xl sm:text-5xl font-black mb-3 tracking-tight">Chocomania</h1>
-            <p class="text-lg sm:text-xl font-medium opacity-80 leading-relaxed max-w-sm mx-auto">
-                Freshly baked cakes in Durg.
-            </p>
-        </div>
+        <p class="tagline">Chocolates &amp; Cakes Studio</p>
+        <p class="subline"><i class="ph-fill ph-map-pin" aria-hidden="true"></i> Freshly baked in Durg since 2008</p>
 
-        <!-- LINKS SECTION -->
-        <nav class="w-full flex flex-col gap-4 sm:gap-5">
-            
-            <!-- Link 1: WhatsApp -->
-            <a href="https://wa.me/917000671411?text=Hi!%20I%20would%20like%20to%20place%20an%20order." class="link-button w-full flex items-center justify-center gap-3 py-4 px-6 rounded-full font-bold text-xl tracking-wide shadow-brutal hover:shadow-brutal-hover">
-                <i class="ph ph-whatsapp-logo text-2xl"></i>
-                <span>WhatsApp</span>
+        <!-- LINKS -->
+        <nav aria-label="Contact links">
+            <a class="link-btn" href="https://wa.me/917000671411?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">
+                <span class="icon whatsapp"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i></span>
+                <span class="label">Order on WhatsApp<small>Quickest way to order</small></span>
+                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
             </a>
 
-            <!-- Link 2: Call -->
-            <a href="tel:+917000671411" class="link-button w-full flex items-center justify-center gap-3 py-4 px-6 rounded-full font-bold text-xl tracking-wide shadow-brutal hover:shadow-brutal-hover">
-                <i class="ph ph-phone-outgoing text-2xl"></i>
-                <span>Call</span>
+            <a class="link-btn" href="tel:+917000671411">
+                <span class="icon call"><i class="ph-fill ph-phone-call" aria-hidden="true"></i></span>
+                <span class="label">Call Us<small>+91 70006 71411</small></span>
+                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
             </a>
 
-            <!-- Link 3: Instagram -->
-            <a href="https://www.instagram.com/chocomaniaindia/" class="link-button w-full flex items-center justify-center gap-3 py-4 px-6 rounded-full font-bold text-xl tracking-wide shadow-brutal hover:shadow-brutal-hover">
-                <i class="ph ph-instagram-logo text-2xl"></i>
-                <span>Instagram</span>
+            <a class="link-btn" href="https://www.instagram.com/chocomaniaindia/" target="_blank" rel="noopener">
+                <span class="icon instagram"><i class="ph ph-instagram-logo" aria-hidden="true"></i></span>
+                <span class="label">Instagram<small>@chocomaniaindia</small></span>
+                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
             </a>
 
-            <!-- Link 4: Google Maps -->
-            <a href="https://www.google.com/maps/place/Chocomania+:+Chocolates+%26+Cakes+Studio/@21.178441,81.2939389,17z/data=!3m1!4b1!4m6!3m5!1s0x3a293d8adeb4b325:0x3871f9f302921c79!8m2!3d21.178436!4d81.2965138!16s%2Fg%2F11fn9814kb?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" class="link-button w-full flex items-center justify-center gap-3 py-4 px-6 rounded-full font-bold text-xl tracking-wide shadow-brutal hover:shadow-brutal-hover">
-                <i class="ph ph-map-pin text-2xl"></i>
-                <span>Find us on Maps</span>
+            <a class="link-btn" href="https://www.google.com/maps/place/Chocomania+:+Chocolates+%26+Cakes+Studio/@21.178441,81.2939389,17z/data=!3m1!4b1!4m6!3m5!1s0x3a293d8adeb4b325:0x3871f9f302921c79!8m2!3d21.178436!4d81.2965138!16s%2Fg%2F11fn9814kb?entry=ttu" target="_blank" rel="noopener">
+                <span class="icon maps"><i class="ph-fill ph-map-pin" aria-hidden="true"></i></span>
+                <span class="label">Find Us on Google Maps<small>Get directions to our studio</small></span>
+                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
             </a>
 
+            <button type="button" class="link-btn feedback" id="openFeedback" aria-haspopup="dialog">
+                <span class="badge">10% OFF</span>
+                <span class="icon"><i class="ph-fill ph-chat-centered-text" aria-hidden="true"></i></span>
+                <span class="label">Share Feedback<small>Get 10% off your next order</small></span>
+                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
+            </button>
         </nav>
-
     </main>
 
-    <!-- FOOTER -->
-    <footer class="mt-auto pb-4 text-center opacity-60 font-semibold text-sm">
-        <p>&copy; 2026 Chocomania. All rights reserved.</p>
+    <footer>
+        <p>&copy; <span id="year">2026</span> Chocomania. Made with love &amp; chocolate.</p>
     </footer>
 
+    <!-- FEEDBACK MODAL -->
+    <dialog id="feedbackDialog" aria-labelledby="fbTitle">
+        <div class="modal-head">
+            <h2 id="fbTitle">Tell us what you think</h2>
+            <p>Share your feedback and get <strong>10% off</strong> your next order.</p>
+            <button type="button" class="close-btn" id="closeFeedback" aria-label="Close"><i class="ph ph-x"></i></button>
+        </div>
+
+        <form id="feedbackForm" novalidate>
+            <div class="field">
+                <label for="fbName">Your name</label>
+                <input type="text" id="fbName" name="name" autocomplete="name" required maxlength="60" placeholder="e.g. Priya Sharma">
+            </div>
+
+            <div class="field">
+                <label for="fbPhone">Mobile number</label>
+                <input type="tel" id="fbPhone" name="phone" autocomplete="tel" inputmode="numeric" required
+                       pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit number">
+            </div>
+
+            <fieldset class="field">
+                <legend>How would you rate us?</legend>
+                <div class="stars">
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="Excellent"><i class="ph-fill ph-star"></i><span class="sr">5 stars</span></label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="Very good"><i class="ph-fill ph-star"></i><span class="sr">4 stars</span></label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="Good"><i class="ph-fill ph-star"></i><span class="sr">3 stars</span></label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="Fair"><i class="ph-fill ph-star"></i><span class="sr">2 stars</span></label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="Poor"><i class="ph-fill ph-star"></i><span class="sr">1 star</span></label>
+                </div>
+            </fieldset>
+
+            <div class="field">
+                <label for="fbMessage">Your feedback</label>
+                <textarea id="fbMessage" name="message" required minlength="10" maxlength="600"
+                          placeholder="What did you order? What did you love? What can we do better?"></textarea>
+            </div>
+
+            <p class="error" id="fbError" role="alert"></p>
+
+            <button type="submit" class="submit-btn">
+                <i class="ph-fill ph-gift" aria-hidden="true"></i> Submit &amp; Get 10% Off
+            </button>
+            <p class="fine-print">Your feedback is sent to us on WhatsApp. One code per customer. Valid on your next order.</p>
+        </form>
+
+        <div class="success" aria-live="polite">
+            <i class="ph-fill ph-seal-check big-icon" aria-hidden="true"></i>
+            <h3>Thank you!</h3>
+            <p>Here's your 10% discount code. Show it when you place your next order.</p>
+            <div class="coupon">
+                <code id="couponCode">CHOCO10</code>
+                <button type="button" class="copy-btn" id="copyCode"><i class="ph ph-copy"></i> <span>Copy</span></button>
+            </div>
+            <a class="wa-btn" id="waSend" href="#" target="_blank" rel="noopener">
+                <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i> Send feedback on WhatsApp
+            </a>
+            <p class="fine-print" style="margin-top:.75rem">Please send the WhatsApp message so we can activate your code.</p>
+        </div>
+    </dialog>
+
+    <script>
+        (() => {
+            const WHATSAPP_NUMBER = '917000671411';
+            const STORAGE_KEY = 'chocomania_feedback_code';
+
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const dialog   = document.getElementById('feedbackDialog');
+            const form     = document.getElementById('feedbackForm');
+            const errorEl  = document.getElementById('fbError');
+            const codeEl   = document.getElementById('couponCode');
+            const waSend   = document.getElementById('waSend');
+            const copyBtn  = document.getElementById('copyCode');
+
+            document.getElementById('openFeedback').addEventListener('click', () => {
+                // Show the existing code if this visitor already submitted feedback
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    showSuccess(data.code, data.waUrl);
+                }
+                dialog.showModal();
+            });
+            document.getElementById('closeFeedback').addEventListener('click', () => dialog.close());
+            // Close when clicking the backdrop
+            dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+            function makeCode() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no look-alike chars (0/O, 1/I)
+                const bytes = crypto.getRandomValues(new Uint8Array(5));
+                return 'CHOCO10-' + Array.from(bytes, b => chars[b % chars.length]).join('');
+            }
+
+            function showSuccess(code, waUrl) {
+                codeEl.textContent = code;
+                waSend.href = waUrl;
+                dialog.classList.add('done');
+            }
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                errorEl.textContent = '';
+
+                const name    = form.name.value.trim();
+                const phone   = form.phone.value.replace(/\D/g, '');
+                const rating  = form.rating.value;
+                const message = form.message.value.trim();
+
+                if (!name)                      return fail('Please enter your name.', form.name);
+                if (!/^[6-9]\d{9}$/.test(phone)) return fail('Please enter a valid 10-digit mobile number.', form.phone);
+                if (!rating)                    return fail('Please choose a star rating.', form.querySelector('#star5'));
+                if (message.length < 10)        return fail('Please write at least a few words of feedback.', form.message);
+
+                const code = makeCode();
+                const text =
+`*New Feedback - Chocomania*
+Name: ${name}
+Mobile: ${phone}
+Rating: ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5)
+
+${message}
+
+Discount code: ${code}`;
+                const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({ code, waUrl }));
+                showSuccess(code, waUrl);
+                window.open(waUrl, '_blank', 'noopener');
+            });
+
+            function fail(msg, el) {
+                errorEl.textContent = msg;
+                el && el.focus();
+            }
+
+            // Only allow digits in the phone field
+            form.phone.addEventListener('input', () => {
+                form.phone.value = form.phone.value.replace(/\D/g, '').slice(0, 10);
+            });
+
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeEl.textContent);
+                    copyBtn.querySelector('span').textContent = 'Copied!';
+                    setTimeout(() => copyBtn.querySelector('span').textContent = 'Copy', 1800);
+                } catch {
+                    copyBtn.querySelector('span').textContent = 'Select & copy';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
