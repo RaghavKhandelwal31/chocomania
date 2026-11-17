@@ -37,7 +37,6 @@
             --logo-image:  url('images/transparent.png'); /* white logo */
         }
 
-        .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
         *, *::before, *::after { box-sizing: border-box; }
 
@@ -209,175 +208,8 @@
             opacity: .75;
         }
 
-        /* ---------- Feedback modal ---------- */
-        dialog {
-            width: min(92vw, 28rem);
-            max-height: 92dvh;
-            border: none;
-            border-radius: 1.5rem;
-            padding: 0;
-            background: var(--cream);
-            color: var(--teal-deep);
-            box-shadow: 0 25px 60px rgba(0,0,0,.4);
-            overflow: auto;
-        }
-        dialog::backdrop { background: rgba(14,63,61,.65); backdrop-filter: blur(3px); }
-        dialog[open] { animation: pop .25s ease-out; }
-
-        .modal-head {
-            background: var(--teal);
-            color: var(--cream);
-            padding: 1.4rem 1.5rem 1.2rem;
-            position: relative;
-        }
-        .modal-head h2 {
-            font-family: 'Playfair Display', serif;
-            margin: 0 0 .25rem;
-            font-size: 1.5rem;
-        }
-        .modal-head p { margin: 0; opacity: .9; font-size: .95rem; }
-        .close-btn {
-            position: absolute;
-            top: .8rem;
-            right: .8rem;
-            width: 2.2rem;
-            height: 2.2rem;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255,255,255,.15);
-            color: inherit;
-            font-size: 1.2rem;
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-        }
-        .close-btn:hover { background: rgba(255,255,255,.3); }
-
-        form { padding: 1.4rem 1.5rem 1.5rem; display: grid; gap: 1rem; }
-
-        .field label, .field legend {
-            display: block;
-            font-weight: 600;
-            font-size: .9rem;
-            margin-bottom: .35rem;
-            padding: 0;
-        }
-        .field input[type="text"], .field input[type="tel"], .field textarea {
-            width: 100%;
-            padding: .75rem .9rem;
-            font: inherit;
-            color: var(--teal-deep);
-            background: #fff;
-            border: 2px solid var(--cream-dark);
-            border-radius: .8rem;
-            transition: border-color .15s ease;
-        }
-        .field textarea { resize: vertical; min-height: 5.5rem; }
-        .field input:focus, .field textarea:focus { outline: none; border-color: var(--teal); }
-        .field input:user-invalid { border-color: #c0392b; }
-        fieldset.field { border: none; margin: 0; padding: 0; }
-
-        /* Star rating (radio buttons, right-to-left trick for hover fill) */
-        .stars {
-            display: inline-flex;
-            flex-direction: row-reverse;
-            gap: .2rem;
-        }
-        .stars input { position: absolute; opacity: 0; width: 0; height: 0; }
-        .stars label {
-            font-size: 2rem;
-            color: #d6cbb9;
-            cursor: pointer;
-            margin: 0;
-            transition: color .15s ease, transform .15s ease;
-        }
-        .stars label:hover { transform: scale(1.15); }
-        .stars input:checked ~ label,
-        .stars label:hover,
-        .stars label:hover ~ label { color: var(--gold); }
-        .stars input:focus-visible + label { outline: 2px solid var(--teal); border-radius: 4px; }
-
-        .error { color: #c0392b; font-size: .85rem; min-height: 1em; margin: 0; }
-
-        .submit-btn {
-            width: 100%;
-            padding: .95rem;
-            border: none;
-            border-radius: 999px;
-            background: var(--choco);
-            color: var(--cream);
-            font: inherit;
-            font-weight: 700;
-            font-size: 1.05rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: .5rem;
-            transition: background .2s ease, transform .1s ease;
-        }
-        .submit-btn:hover { background: #5d3a2c; }
-        .submit-btn:active { transform: translateY(1px); }
-        .fine-print { font-size: .78rem; opacity: .65; text-align: center; margin: 0; }
-
-        /* Success view */
-        .success { padding: 1.75rem 1.5rem 1.75rem; text-align: center; display: none; }
-        dialog.done form { display: none; }
-        dialog.done .success { display: block; }
-        .success .big-icon { font-size: 3rem; color: var(--teal); }
-        .success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: .25rem 0 .5rem; }
-        .success p { margin: 0 0 1rem; }
-        .coupon {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: .5rem;
-            border: 2px dashed var(--teal);
-            background: #fff;
-            border-radius: 1rem;
-            padding: .8rem 1rem;
-            margin: 0 0 1rem;
-        }
-        .coupon code {
-            font-family: 'Outfit', monospace;
-            font-size: clamp(1.05rem, 5vw, 1.35rem);
-            font-weight: 700;
-            letter-spacing: .05em;
-            white-space: nowrap;
-            color: var(--choco);
-        }
-        .copy-btn {
-            border: none;
-            background: var(--teal);
-            color: #fff;
-            border-radius: .6rem;
-            padding: .5rem .75rem;
-            font: inherit;
-            font-weight: 600;
-            font-size: .85rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: .3rem;
-        }
-        .wa-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: .5rem;
-            width: 100%;
-            padding: .9rem;
-            border-radius: 999px;
-            background: #25D366;
-            color: #fff;
-            font-weight: 700;
-            text-decoration: none;
-        }
-        .wa-btn:hover { background: #1ebe5a; }
-
         /* ---------- Animations ---------- */
         @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        @keyframes pop  { from { transform: scale(.95) translateY(8px); } to { transform: none; } }
         @keyframes wiggle {
             0%, 85%, 100% { transform: rotate(0); }
             88% { transform: rotate(-6deg); }
@@ -424,12 +256,13 @@
                 <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
             </a>
 
-            <button type="button" class="link-btn feedback" id="openFeedback" aria-haspopup="dialog">
+            <!-- Opens the Tally form as a popup; falls back to the Tally page if the widget script fails to load -->
+            <a class="link-btn feedback" id="openFeedback" href="https://tally.so/r/X5oGoV" target="_blank" rel="noopener" aria-haspopup="dialog">
                 <span class="badge">10% OFF</span>
                 <span class="icon"><i class="ph-fill ph-chat-centered-text" aria-hidden="true"></i></span>
                 <span class="label">Share Feedback<small>Get 10% off your next order</small></span>
                 <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
-            </button>
+            </a>
         </nav>
     </main>
 
@@ -437,156 +270,25 @@
         <p>&copy; <span id="year">2026</span> Chocomania. Made with love &amp; chocolate.</p>
     </footer>
 
-    <!-- FEEDBACK MODAL -->
-    <dialog id="feedbackDialog" aria-labelledby="fbTitle">
-        <div class="modal-head">
-            <h2 id="fbTitle">Tell us what you think</h2>
-            <p>Share your feedback and get <strong>10% off</strong> your next order.</p>
-            <button type="button" class="close-btn" id="closeFeedback" aria-label="Close"><i class="ph ph-x"></i></button>
-        </div>
-
-        <form id="feedbackForm" novalidate>
-            <div class="field">
-                <label for="fbName">Your name</label>
-                <input type="text" id="fbName" name="name" autocomplete="name" required maxlength="60" placeholder="e.g. Priya Sharma">
-            </div>
-
-            <div class="field">
-                <label for="fbPhone">Mobile number</label>
-                <input type="tel" id="fbPhone" name="phone" autocomplete="tel" inputmode="numeric" required
-                       pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit number">
-            </div>
-
-            <fieldset class="field">
-                <legend>How would you rate us?</legend>
-                <div class="stars">
-                    <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="Excellent"><i class="ph-fill ph-star"></i><span class="sr">5 stars</span></label>
-                    <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="Very good"><i class="ph-fill ph-star"></i><span class="sr">4 stars</span></label>
-                    <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="Good"><i class="ph-fill ph-star"></i><span class="sr">3 stars</span></label>
-                    <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="Fair"><i class="ph-fill ph-star"></i><span class="sr">2 stars</span></label>
-                    <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="Poor"><i class="ph-fill ph-star"></i><span class="sr">1 star</span></label>
-                </div>
-            </fieldset>
-
-            <div class="field">
-                <label for="fbMessage">Your feedback</label>
-                <textarea id="fbMessage" name="message" required minlength="10" maxlength="600"
-                          placeholder="What did you order? What did you love? What can we do better?"></textarea>
-            </div>
-
-            <p class="error" id="fbError" role="alert"></p>
-
-            <button type="submit" class="submit-btn">
-                <i class="ph-fill ph-gift" aria-hidden="true"></i> Submit &amp; Get 10% Off
-            </button>
-            <p class="fine-print">Your feedback is sent to us on WhatsApp. One code per customer. Valid on your next order.</p>
-        </form>
-
-        <div class="success" aria-live="polite">
-            <i class="ph-fill ph-seal-check big-icon" aria-hidden="true"></i>
-            <h3>Thank you!</h3>
-            <p>Here's your 10% discount code. Show it when you place your next order.</p>
-            <div class="coupon">
-                <code id="couponCode">CHOCO10</code>
-                <button type="button" class="copy-btn" id="copyCode"><i class="ph ph-copy"></i> <span>Copy</span></button>
-            </div>
-            <a class="wa-btn" id="waSend" href="#" target="_blank" rel="noopener">
-                <i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i> Send feedback on WhatsApp
-            </a>
-            <p class="fine-print" style="margin-top:.75rem">Please send the WhatsApp message so we can activate your code.</p>
-        </div>
-    </dialog>
-
+    <!-- Tally popup widget -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
     <script>
-        (() => {
-            const WHATSAPP_NUMBER = '917000671411';
-            const STORAGE_KEY = 'chocomania_feedback_code';
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-            document.getElementById('year').textContent = new Date().getFullYear();
-
-            const dialog   = document.getElementById('feedbackDialog');
-            const form     = document.getElementById('feedbackForm');
-            const errorEl  = document.getElementById('fbError');
-            const codeEl   = document.getElementById('couponCode');
-            const waSend   = document.getElementById('waSend');
-            const copyBtn  = document.getElementById('copyCode');
-
-            document.getElementById('openFeedback').addEventListener('click', () => {
-                // Show the existing code if this visitor already submitted feedback
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    showSuccess(data.code, data.waUrl);
-                }
-                dialog.showModal();
-            });
-            document.getElementById('closeFeedback').addEventListener('click', () => dialog.close());
-            // Close when clicking the backdrop
-            dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-
-            function makeCode() {
-                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no look-alike chars (0/O, 1/I)
-                const bytes = crypto.getRandomValues(new Uint8Array(5));
-                return 'CHOCO10-' + Array.from(bytes, b => chars[b % chars.length]).join('');
-            }
-
-            function showSuccess(code, waUrl) {
-                codeEl.textContent = code;
-                waSend.href = waUrl;
-                dialog.classList.add('done');
-            }
-
-            form.addEventListener('submit', (e) => {
+        // Feedback button: open the Tally form as a popup on this page.
+        // If the Tally script hasn't loaded, the link opens the form in a new tab instead.
+        const TALLY_FORM_ID = 'X5oGoV';
+        document.getElementById('openFeedback').addEventListener('click', (e) => {
+            if (window.Tally && typeof window.Tally.openPopup === 'function') {
                 e.preventDefault();
-                errorEl.textContent = '';
-
-                const name    = form.name.value.trim();
-                const phone   = form.phone.value.replace(/\D/g, '');
-                const rating  = form.rating.value;
-                const message = form.message.value.trim();
-
-                if (!name)                      return fail('Please enter your name.', form.name);
-                if (!/^[6-9]\d{9}$/.test(phone)) return fail('Please enter a valid 10-digit mobile number.', form.phone);
-                if (!rating)                    return fail('Please choose a star rating.', form.querySelector('#star5'));
-                if (message.length < 10)        return fail('Please write at least a few words of feedback.', form.message);
-
-                const code = makeCode();
-                const text =
-`*New Feedback - Chocomania*
-Name: ${name}
-Mobile: ${phone}
-Rating: ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5)
-
-${message}
-
-Discount code: ${code}`;
-                const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-
-                localStorage.setItem(STORAGE_KEY, JSON.stringify({ code, waUrl }));
-                showSuccess(code, waUrl);
-                window.open(waUrl, '_blank', 'noopener');
-            });
-
-            function fail(msg, el) {
-                errorEl.textContent = msg;
-                el && el.focus();
+                window.Tally.openPopup(TALLY_FORM_ID, {
+                    layout: 'modal',
+                    width: 560,
+                    overlay: true,
+                    emoji: { text: '🍫', animation: 'wave' }
+                });
             }
-
-            // Only allow digits in the phone field
-            form.phone.addEventListener('input', () => {
-                form.phone.value = form.phone.value.replace(/\D/g, '').slice(0, 10);
-            });
-
-            copyBtn.addEventListener('click', async () => {
-                try {
-                    await navigator.clipboard.writeText(codeEl.textContent);
-                    copyBtn.querySelector('span').textContent = 'Copied!';
-                    setTimeout(() => copyBtn.querySelector('span').textContent = 'Copy', 1800);
-                } catch {
-                    copyBtn.querySelector('span').textContent = 'Select & copy';
-                }
-            });
-        })();
+        });
     </script>
 </body>
 </html>
