@@ -3,308 +3,828 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chocomania | Chocolates & Cakes Studio, Durg</title>
-    <meta name="description" content="Chocomania - freshly baked cakes and chocolates in Durg since 2008. Order on WhatsApp, call us, or find us on Google Maps.">
+    <title>Chocomania | Chocolates &amp; Cakes Studio, Durg</title>
+    <meta name="description" content="Chocomania — freshly baked cakes and chocolates in Durg since 2008. Share your feedback for 10% off, rate us on Google, or order on WhatsApp.">
     <meta name="theme-color" content="#23807D">
+
     <link rel="icon" href="favicon_io/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
 
-    <!-- Fonts: serif display to match the logo + clean sans for body -->
+    <!-- Classic Elegant pairing: Playfair Display + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
     <style>
-        /* ==========================================================
-           CUSTOMIZATION PANEL
-           ========================================================== */
         :root {
-            --teal:        #23807D;  /* brand teal (from logo) */
-            --teal-dark:   #145553;
-            --teal-deep:   #0E3F3D;
-            --cream:       #FBF6EE;
-            --cream-dark:  #EFE5D6;
-            --choco:       #4A2C21;  /* chocolate accent */
-            --gold:        #E9B65A;
-
-            --bg-image:    url('images/Gemini_Generated_Image_6wdqb46wdqb46wdq.png');
-            --logo-image:  url('images/transparent.png'); /* white logo */
+            --teal: #23807D;
+            --teal-dark: #145553;
+            --teal-deep: #0E3F3D;
+            --cream: #FBF6EE;
+            --cream-soft: #F3E9D8;
+            --cream-border: #DFD0B8;
+            --cocoa: #3D231A;
+            --cocoa-deep: #26140E;
+            --gold: #E9B65A;
+            --gold-hover: #F2C572;
+            --ink: #1C1917;
+            --ink-muted: #4A443F;
+            --white: #FFFFFF;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --radius-pill: 999px;
+            --shadow-card: 0 14px 34px rgba(14, 63, 61, 0.14);
+            --shadow-hero: 0 20px 44px rgba(8, 28, 27, 0.34);
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
 
-        *, *::before, *::after { box-sizing: border-box; }
-
-        html, body { margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Outfit', system-ui, sans-serif;
-            color: var(--cream);
-            background-color: var(--teal);
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
+        html {
+            scroll-behavior: smooth;
+            max-width: 100%;
             overflow-x: hidden;
         }
 
-        /* Floral background (scaled slightly to crop the corner watermark) */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: var(--bg-image) center / cover no-repeat;
-            transform: scale(1.12);
-            z-index: -2;
-        }
-        /* Soft vignette for readability */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(ellipse at center, rgba(14,63,61,0) 0%, rgba(14,63,61,.45) 100%);
-            z-index: -1;
-            pointer-events: none;
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--ink);
+            background-color: var(--cream);
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
-        main {
+        a, button {
+            cursor: pointer;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 50;
+            background: var(--cocoa-deep);
+            color: var(--cream);
+            padding: 0.75rem 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0 0 var(--radius-md) 0;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        .container {
             width: 100%;
-            max-width: 30rem;
-            padding: 2.5rem 1.5rem 2rem;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* ---------- Top Editorial Header ---------- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            background: rgba(251, 246, 238, 0.94);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--cream-border);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            min-height: 70px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+            color: var(--ink);
+            min-height: 44px;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 56px;
+            height: 40px;
+            flex: none;
+            background: url('images/bglogo.png') center / 148% no-repeat;
+            border-radius: 6px;
+        }
+
+        .brand-text {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            flex: 1;
+            line-height: 1.15;
+            min-width: 0;
         }
 
-        /* ---------- Logo & header ---------- */
-        .logo {
-            width: min(78vw, 20rem);
-            aspect-ratio: 1 / 1;
-            background: var(--logo-image) center / 135% no-repeat; /* zoom past the empty padding in the PNG */
-            filter: drop-shadow(0 6px 14px rgba(0,0,0,.25));
-            margin-bottom: -1.5rem;
-            animation: rise .7s ease-out both;
+        .brand-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.12rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--teal-deep);
         }
 
-        .tagline {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            font-weight: 600;
-            text-align: center;
-            margin: 0 0 .35rem;
-            animation: rise .7s .1s ease-out both;
+        .brand-meta {
+            font-size: 0.72rem;
+            color: var(--ink-muted);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .subline {
-            text-align: center;
-            font-size: .95rem;
-            opacity: .85;
-            margin: 0 0 2rem;
+
+        .header-nav {
             display: flex;
             align-items: center;
-            gap: .35rem;
-            animation: rise .7s .15s ease-out both;
+            gap: 0.5rem;
+            flex: none;
         }
 
-        /* ---------- Link buttons ---------- */
-        nav { width: 100%; display: flex; flex-direction: column; gap: .9rem; }
+        .nav-link {
+            display: none;
+            align-items: center;
+            min-height: 44px;
+            padding: 0.5rem 0.85rem;
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            border-radius: var(--radius-pill);
+            transition: background-color 180ms ease, color 180ms ease;
+        }
 
-        .link-btn {
+        .nav-link:hover {
+            background: var(--cream-soft);
+            color: var(--teal-deep);
+        }
+
+        .header-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            min-height: 44px;
+            padding: 0.55rem 0.9rem;
+            border-radius: var(--radius-pill);
+            background: var(--cocoa);
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            white-space: nowrap;
+            border: 1px solid var(--cocoa);
+            transition: background-color 180ms ease, transform 180ms ease;
+        }
+
+        .header-cta:hover {
+            background: var(--cocoa-deep);
+        }
+
+        /* ---------- Hero & Priority Actions ---------- */
+        .hero {
             position: relative;
+            background-color: var(--teal-deep);
+            color: var(--cream);
+            padding: 2.5rem 0 3.25rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('images/Gemini_Generated_Image_6wdqb46wdqb46wdq.png') center / cover no-repeat;
+            transform: scale(1.1);
+            opacity: 0.42;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(14, 63, 61, 0.92) 0%, rgba(20, 85, 83, 0.84) 55%, rgba(14, 63, 61, 0.95) 100%);
+            z-index: 0;
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-intro {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 0;
+        }
+
+        .hero-emblem {
+            width: 184px;
+            height: 124px;
+            background: url('images/transparent.png') center / 140% no-repeat;
+            filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.28));
+            margin-bottom: 1rem;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: var(--radius-pill);
+            background: rgba(251, 246, 238, 0.14);
+            border: 1px solid rgba(251, 246, 238, 0.28);
+            color: var(--cream);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 4.6vw, 3.2rem);
+            line-height: 1.12;
+            font-weight: 700;
+            margin: 0 0 1rem;
+            max-width: 14ch;
+        }
+
+        .hero-lead {
+            font-size: 1.04rem;
+            line-height: 1.65;
+            color: rgba(251, 246, 238, 0.92);
+            max-width: 46ch;
+            margin: 0 0 1.5rem;
+        }
+
+        .hero-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .hero-highlights li {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.86rem;
+            font-weight: 500;
+            color: var(--cream);
+            background: rgba(14, 63, 61, 0.55);
+            border: 1px solid rgba(251, 246, 238, 0.22);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-pill);
+        }
+
+        /* ---------- Priority Conversion Stack (1st: Feedback, 2nd: Google Rating) ---------- */
+        .priority-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            min-width: 0;
+        }
+
+        .priority-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            padding: 1.35rem;
+            box-shadow: var(--shadow-hero);
+            transition: transform 200ms ease, box-shadow 200ms ease;
+            min-width: 0;
+        }
+
+        .priority-card--feedback {
+            background: linear-gradient(155deg, var(--cocoa) 0%, var(--cocoa-deep) 100%);
+            color: var(--cream);
+            border: 2px solid var(--gold);
+        }
+
+        .priority-card--rating {
+            background: var(--cream);
+            color: var(--ink);
+            border: 1px solid var(--cream-border);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.28rem 0.75rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .pill-badge--gold {
+            background: var(--gold);
+            color: var(--cocoa-deep);
+        }
+
+        .pill-badge--teal {
+            background: rgba(35, 128, 125, 0.12);
+            color: var(--teal-deep);
+        }
+
+        .step-tag {
+            font-size: 0.78rem;
+            font-weight: 600;
+            opacity: 0.82;
+        }
+
+        .priority-card h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            line-height: 1.22;
+            margin: 0 0 0.5rem;
+        }
+
+        .priority-card p {
+            margin: 0 0 1.2rem;
+            font-size: 0.96rem;
+            line-height: 1.55;
+        }
+
+        .priority-card--feedback p {
+            color: rgba(251, 246, 238, 0.9);
+        }
+
+        .priority-card--rating p {
+            color: var(--ink-muted);
+        }
+
+        .stars-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            color: #C98212;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            width: 100%;
+            min-height: 48px;
+            padding: 0.8rem 1.25rem;
+            border-radius: var(--radius-pill);
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        .btn--primary {
+            background: var(--gold);
+            color: var(--cocoa-deep);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
+        }
+
+        .btn--primary:hover {
+            background: var(--gold-hover);
+        }
+
+        .btn--secondary {
+            background: var(--teal-deep);
+            color: var(--white);
+        }
+
+        .btn--secondary:hover {
+            background: var(--teal-dark);
+        }
+
+        /* ---------- Secondary Section: Order, Follow & Visit ---------- */
+        .connect-section {
+            padding: 3.5rem 0 4rem;
+            background: var(--cream);
+        }
+
+        .section-head {
+            max-width: 620px;
+            margin-bottom: 2rem;
+        }
+
+        .section-kicker {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--teal-dark);
+            margin: 0 0 0.45rem;
+        }
+
+        .section-head h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.65rem, 3vw, 2.2rem);
+            line-height: 1.2;
+            color: var(--cocoa-deep);
+            margin: 0 0 0.6rem;
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--ink-muted);
+            font-size: 0.98rem;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1rem;
+        }
+
+        .channel-card {
             display: flex;
             align-items: center;
             gap: 1rem;
-            width: 100%;
-            padding: .95rem 1.25rem;
-            border-radius: 999px;
-            background: var(--cream);
-            color: var(--teal-deep);
+            padding: 1.2rem 1.25rem;
+            min-height: 84px;
+            border-radius: var(--radius-md);
+            background: var(--white);
+            border: 1px solid var(--cream-border);
+            color: var(--ink);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 2px solid var(--cream);
-            box-shadow: 0 4px 0 var(--teal-deep), 0 10px 20px rgba(0,0,0,.18);
-            transition: transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease;
-            cursor: pointer;
-            font-family: inherit;
-            animation: rise .6s ease-out both;
-        }
-        .link-btn:nth-child(1) { animation-delay: .2s; }
-        .link-btn:nth-child(2) { animation-delay: .27s; }
-        .link-btn:nth-child(3) { animation-delay: .34s; }
-        .link-btn:nth-child(4) { animation-delay: .41s; }
-        .link-btn:nth-child(5) { animation-delay: .48s; }
-        .link-btn:nth-child(6) { animation-delay: .55s; }
-
-        .link-btn:hover, .link-btn:focus-visible {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 var(--teal-deep), 0 14px 24px rgba(0,0,0,.22);
-            outline: none;
-        }
-        .link-btn:focus-visible { border-color: var(--gold); }
-        .link-btn:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0 var(--teal-deep), 0 4px 10px rgba(0,0,0,.18);
+            box-shadow: 0 4px 14px rgba(38, 20, 14, 0.04);
+            transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
         }
 
-        .link-btn .icon {
+        .channel-card:hover {
+            border-color: var(--teal);
+            background: #FFFDF9;
+            box-shadow: var(--shadow-card);
+        }
+
+        .channel-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             flex: none;
-            width: 2.6rem;
-            height: 2.6rem;
-            border-radius: 50%;
             display: grid;
             place-items: center;
-            font-size: 1.45rem;
-            color: #fff;
-            background: var(--teal);
+            color: var(--white);
         }
-        .link-btn .label { flex: 1; text-align: left; line-height: 1.2; }
-        .link-btn .label small { display: block; font-weight: 400; font-size: .8rem; opacity: .7; }
-        .link-btn .arrow { font-size: 1.2rem; opacity: .5; transition: transform .2s ease, opacity .2s ease; }
-        .link-btn:hover .arrow { transform: translateX(3px); opacity: 1; }
 
-        .icon.whatsapp  { background: #25D366; }
-        .icon.call      { background: var(--teal); }
-        .icon.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-        .icon.maps      { background: #EA4335; }
-        .icon.review    { background: #4285F4; }
+        .channel-icon--whatsapp { background: #168A41; }
+        .channel-icon--instagram { background: linear-gradient(135deg, #D6249F 0%, #FD5949 60%, #E9922A 100%); }
+        .channel-icon--call { background: var(--teal-deep); }
+        .channel-icon--maps { background: #C5221F; }
 
-        /* Feedback button - highlighted */
-        .link-btn.feedback {
-            background: var(--choco);
-            color: var(--cream);
-            border-color: var(--gold);
-            box-shadow: 0 4px 0 #2a1812, 0 10px 20px rgba(0,0,0,.25);
-            margin-top: .4rem;
+        .channel-body {
+            flex: 1;
+            min-width: 0;
         }
-        .link-btn.feedback:hover, .link-btn.feedback:focus-visible {
-            box-shadow: 0 6px 0 #2a1812, 0 14px 24px rgba(0,0,0,.3);
-        }
-        .link-btn.feedback .icon { background: var(--gold); color: var(--choco); }
-        .badge {
-            position: absolute;
-            top: -.7rem;
-            right: 1.25rem;
-            background: var(--gold);
-            color: var(--choco);
-            font-size: .75rem;
+
+        .channel-title {
+            display: block;
             font-weight: 700;
-            letter-spacing: .04em;
-            padding: .2rem .6rem;
-            border-radius: 999px;
-            box-shadow: 0 2px 6px rgba(0,0,0,.25);
-            animation: wiggle 2.8s 1.2s ease-in-out infinite;
+            font-size: 1.02rem;
+            color: var(--ink);
+            margin-bottom: 0.15rem;
         }
 
-        footer {
-            padding: 1.25rem 1rem 1.75rem;
-            text-align: center;
-            font-size: .85rem;
+        .channel-sub {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--ink-muted);
         }
-        footer .copyright { opacity: .75; margin: 0; }
-        .footer-links { margin: .65rem 0 0; }
+
+        .channel-arrow {
+            flex: none;
+            color: var(--teal-dark);
+            opacity: 0.7;
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+
+        .channel-card:hover .channel-arrow {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
+        /* ---------- Footer ---------- */
+        .site-footer {
+            background: var(--teal-deep);
+            color: var(--cream);
+            padding: 2.25rem 0;
+            border-top: 4px solid var(--gold);
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 0.25rem;
+        }
+
+        .footer-copy {
+            margin: 0;
+            font-size: 0.88rem;
+            color: rgba(251, 246, 238, 0.82);
+        }
+
         .footer-app-link {
             display: inline-flex;
             align-items: center;
-            gap: .4rem;
-            padding: .45rem .95rem;
-            border-radius: 999px;
-            border: 1px solid rgba(251, 246, 238, .35);
-            background: rgba(14, 63, 61, .35);
+            gap: 0.5rem;
+            min-height: 44px;
+            padding: 0.55rem 1.05rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(251, 246, 238, 0.35);
+            background: rgba(251, 246, 238, 0.08);
             color: var(--cream);
             text-decoration: none;
+            font-size: 0.86rem;
             font-weight: 600;
-            font-size: .82rem;
-            transition: background .2s ease, border-color .2s ease, color .2s ease, transform .15s ease;
-        }
-        .footer-app-link:hover, .footer-app-link:focus-visible {
-            background: rgba(14, 63, 61, .65);
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-1px);
-            outline: none;
+            transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
         }
 
-        /* ---------- Animations ---------- */
-        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        @keyframes wiggle {
-            0%, 85%, 100% { transform: rotate(0); }
-            88% { transform: rotate(-6deg); }
-            92% { transform: rotate(6deg); }
-            96% { transform: rotate(-3deg); }
+        .footer-app-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(14, 63, 61, 0.8);
         }
+
+        /* ---------- Responsive Breakpoints (Mobile-first) ---------- */
+        @media (min-width: 768px) {
+            .nav-link {
+                display: inline-flex;
+            }
+
+            .hero {
+                padding: 3.5rem 0 4.25rem;
+            }
+
+            .channel-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.15rem;
+            }
+
+            .footer-inner {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 4.25rem 0 4.75rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1.05fr 0.95fr;
+                gap: 3rem;
+            }
+
+            .priority-card {
+                padding: 1.75rem;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation: none !important; transition: none !important; }
+            html {
+                scroll-behavior: auto;
+            }
+            *, *::before, *::after {
+                transition: none !important;
+                animation: none !important;
+            }
         }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <main>
-        <!-- LOGO -->
-        <h1 class="logo" role="img" aria-label="Chocomania - Est. 2008"></h1>
-
-        <p class="tagline">Chocolates &amp; Cakes Studio</p>
-        <p class="subline"><i class="ph-fill ph-map-pin" aria-hidden="true"></i> Freshly baked in Durg since 2008</p>
-
-        <!-- LINKS -->
-        <nav aria-label="Contact links">
-            <a class="link-btn" href="https://wa.me/917000671411?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">
-                <span class="icon whatsapp"><i class="ph-fill ph-whatsapp-logo" aria-hidden="true"></i></span>
-                <span class="label">Order on WhatsApp<small>Quickest way to order</small></span>
-                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#top" aria-label="Chocomania home">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-text">
+                    <span class="brand-name">Chocomania</span>
+                    <span class="brand-meta">Chocolates &amp; Cakes Studio · Durg</span>
+                </span>
             </a>
 
-            <a class="link-btn" href="tel:+917000671411">
-                <span class="icon call"><i class="ph-fill ph-phone-call" aria-hidden="true"></i></span>
-                <span class="label">Call Us<small>+91 70006 71411</small></span>
-                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
-            </a>
+            <nav class="header-nav" aria-label="Primary navigation">
+                <a class="nav-link" href="#priority-feedback">Feedback</a>
+                <a class="nav-link" href="#priority-rating">Google Rating</a>
+                <a class="nav-link" href="#connect">Order &amp; Follow</a>
+                <a class="header-cta" href="https://tally.so/r/X5oGoV" data-feedback-trigger="true" target="_blank" rel="noopener">
+                    10% Off Feedback
+                </a>
+            </nav>
+        </div>
+    </header>
 
-            <a class="link-btn" href="https://www.instagram.com/chocomaniaindia/" target="_blank" rel="noopener">
-                <span class="icon instagram"><i class="ph ph-instagram-logo" aria-hidden="true"></i></span>
-                <span class="label">Instagram<small>@chocomaniaindia</small></span>
-                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
-            </a>
+    <main id="main-content">
+        <section class="hero" id="top" aria-labelledby="hero-heading">
+            <div class="container hero-grid">
+                <div class="hero-intro">
+                    <div class="hero-emblem" role="img" aria-label="Chocomania Est. 2008 emblem"></div>
+                    <span class="eyebrow">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Freshly baked in Durg since 2008
+                    </span>
+                    <h1 id="hero-heading">Handcrafted Cakes &amp; Chocolates, Shaped by You.</h1>
+                    <p class="hero-lead">
+                        Your experience matters most to our kitchen. Take a moment to share quick feedback for 10% off your next order, or leave us a Google rating so more neighbours in Durg can find us.
+                    </p>
+                    <ul class="hero-highlights">
+                        <li>1. Quick Feedback (10% Off)</li>
+                        <li>2. Google Rating</li>
+                        <li>3. WhatsApp, Instagram &amp; Studio</li>
+                    </ul>
+                </div>
 
-            <a class="link-btn" href="https://www.google.com/maps/place/Chocomania+:+Chocolates+%26+Cakes+Studio/@21.178441,81.2939389,17z/data=!3m1!4b1!4m6!3m5!1s0x3a293d8adeb4b325:0x3871f9f302921c79!8m2!3d21.178436!4d81.2965138!16s%2Fg%2F11fn9814kb?entry=ttu" target="_blank" rel="noopener">
-                <span class="icon maps"><i class="ph-fill ph-map-pin" aria-hidden="true"></i></span>
-                <span class="label">Find Us on Google Maps<small>Get directions to our studio</small></span>
-                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
-            </a>
+                <div class="priority-stack" aria-label="Priority actions">
+                    <!-- PRIORITY 1: FEEDBACK -->
+                    <article class="priority-card priority-card--feedback" id="priority-feedback">
+                        <div class="card-top">
+                            <span class="pill-badge pill-badge--gold">Priority 1 · 10% Off</span>
+                            <span class="step-tag">Takes under 60 sec</span>
+                        </div>
+                        <h2>Share Your Feedback</h2>
+                        <p>
+                            Tell us how your cake or chocolates tasted and what we can make even better. Unlock a 10% discount on your next order right after submitting.
+                        </p>
+                        <a class="btn btn--primary" id="openFeedback" data-feedback-trigger="true" href="https://tally.so/r/X5oGoV" target="_blank" rel="noopener" aria-haspopup="dialog">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            Share Feedback &amp; Get 10% Off
+                        </a>
+                    </article>
 
-            <a class="link-btn" href="https://g.page/r/CXkckgLz-XE4EAE/review" target="_blank" rel="noopener">
-                <span class="icon review"><i class="ph-fill ph-star" aria-hidden="true"></i></span>
-                <span class="label">Rate Us on Google<small>Love our treats? Leave a review</small></span>
-                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
-            </a>
+                    <!-- PRIORITY 2: GOOGLE RATING -->
+                    <article class="priority-card priority-card--rating" id="priority-rating">
+                        <div class="card-top">
+                            <span class="pill-badge pill-badge--teal">Priority 2 · Google Review</span>
+                            <div class="stars-row" aria-label="5 star rating icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <h2>Rate Us on Google</h2>
+                        <p>
+                            Loved our treats? Leave a star rating or short review on Google to support our Durg studio and help others choose with confidence.
+                        </p>
+                        <a class="btn btn--secondary" href="https://g.page/r/CXkckgLz-XE4EAE/review" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                            Rate Chocomania on Google
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-            <!-- Opens the Tally form as a popup; falls back to the Tally page if the widget script fails to load -->
-            <a class="link-btn feedback" id="openFeedback" href="https://tally.so/r/X5oGoV" target="_blank" rel="noopener" aria-haspopup="dialog">
-                <span class="badge">10% OFF</span>
-                <span class="icon"><i class="ph-fill ph-chat-centered-text" aria-hidden="true"></i></span>
-                <span class="label">Share Feedback<small>Get 10% off your next order</small></span>
-                <i class="ph ph-caret-right arrow" aria-hidden="true"></i>
-            </a>
-        </nav>
+        <!-- NEXT: WHATSAPP, INSTAGRAM, CALL & MAPS -->
+        <section class="connect-section" id="connect" aria-labelledby="connect-heading">
+            <div class="container">
+                <div class="section-head">
+                    <p class="section-kicker">Order, Follow &amp; Visit</p>
+                    <h2 id="connect-heading">Connect With Our Studio</h2>
+                    <p>Ready to place an order, browse our latest custom cakes, or drop by in Durg? Pick a channel below.</p>
+                </div>
+
+                <nav class="channel-grid" aria-label="Order and social channels">
+                    <a class="channel-card" href="https://wa.me/917000671411?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">
+                        <span class="channel-icon channel-icon--whatsapp" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            </svg>
+                        </span>
+                        <span class="channel-body">
+                            <span class="channel-title">Order on WhatsApp</span>
+                            <span class="channel-sub">Quickest way to place a custom cake or chocolate order</span>
+                        </span>
+                        <svg class="channel-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </a>
+
+                    <a class="channel-card" href="https://www.instagram.com/chocomaniaindia/" target="_blank" rel="noopener">
+                        <span class="channel-icon channel-icon--instagram" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                            </svg>
+                        </span>
+                        <span class="channel-body">
+                            <span class="channel-title">Instagram · @chocomaniaindia</span>
+                            <span class="channel-sub">See recent cake designs and studio updates</span>
+                        </span>
+                        <svg class="channel-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </a>
+
+                    <a class="channel-card" href="tel:+917000671411">
+                        <span class="channel-icon channel-icon--call" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </span>
+                        <span class="channel-body">
+                            <span class="channel-title">Call Us</span>
+                            <span class="channel-sub">+91 70006 71411</span>
+                        </span>
+                        <svg class="channel-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </a>
+
+                    <a class="channel-card" href="https://www.google.com/maps/place/Chocomania+:+Chocolates+%26+Cakes+Studio/@21.178441,81.2939389,17z/data=!3m1!4b1!4m6!3m5!1s0x3a293d8adeb4b325:0x3871f9f302921c79!8m2!3d21.178436!4d81.2965138!16s%2Fg%2F11fn9814kb?entry=ttu" target="_blank" rel="noopener">
+                        <span class="channel-icon channel-icon--maps" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </span>
+                        <span class="channel-body">
+                            <span class="channel-title">Find Us on Google Maps</span>
+                            <span class="channel-sub">Get directions to our studio in Durg</span>
+                        </span>
+                        <svg class="channel-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </a>
+                </nav>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p class="copyright">&copy; <span id="year">2026</span> Chocomania. Made with love &amp; chocolate.</p>
-        <p class="footer-links">
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>
+                <p class="footer-brand">Chocomania · Chocolates &amp; Cakes Studio</p>
+                <p class="footer-copy">&copy; <span id="year">2026</span> Chocomania. Made with love &amp; chocolate.</p>
+            </div>
             <a class="footer-app-link" href="https://app.chocomania.in/">
-                <i class="ph-fill ph-storefront" aria-hidden="true"></i>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/>
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                    <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/>
+                    <path d="M2 7h20"/>
+                </svg>
                 Team &amp; Orders App
-                <i class="ph ph-arrow-right" aria-hidden="true"></i>
             </a>
-        </p>
+        </div>
     </footer>
 
     <!-- Tally popup widget -->
@@ -312,19 +832,20 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Feedback button: open the Tally form as a popup on this page.
-        // If the Tally script hasn't loaded, the link opens the form in a new tab instead.
+        // Open the Tally feedback form in a modal when available; otherwise follow the direct link.
         const TALLY_FORM_ID = 'X5oGoV';
-        document.getElementById('openFeedback').addEventListener('click', (e) => {
-            if (window.Tally && typeof window.Tally.openPopup === 'function') {
-                e.preventDefault();
-                window.Tally.openPopup(TALLY_FORM_ID, {
-                    layout: 'modal',
-                    width: 560,
-                    overlay: true,
-                    emoji: { text: '🍫', animation: 'wave' }
-                });
-            }
+        document.querySelectorAll('[data-feedback-trigger="true"]').forEach((trigger) => {
+            trigger.addEventListener('click', (e) => {
+                if (window.Tally && typeof window.Tally.openPopup === 'function') {
+                    e.preventDefault();
+                    window.Tally.openPopup(TALLY_FORM_ID, {
+                        layout: 'modal',
+                        width: 560,
+                        overlay: true,
+                        emoji: { text: '🍫', animation: 'wave' }
+                    });
+                }
+            });
         });
     </script>
 </body>
