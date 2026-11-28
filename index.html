@@ -207,7 +207,29 @@
             padding: 1.25rem 1rem 1.75rem;
             text-align: center;
             font-size: .85rem;
-            opacity: .75;
+        }
+        footer .copyright { opacity: .75; margin: 0; }
+        .footer-links { margin: .65rem 0 0; }
+        .footer-app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .45rem .95rem;
+            border-radius: 999px;
+            border: 1px solid rgba(251, 246, 238, .35);
+            background: rgba(14, 63, 61, .35);
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: .82rem;
+            transition: background .2s ease, border-color .2s ease, color .2s ease, transform .15s ease;
+        }
+        .footer-app-link:hover, .footer-app-link:focus-visible {
+            background: rgba(14, 63, 61, .65);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-1px);
+            outline: none;
         }
 
         /* ---------- Animations ---------- */
@@ -275,7 +297,14 @@
     </main>
 
     <footer>
-        <p>&copy; <span id="year">2026</span> Chocomania. Made with love &amp; chocolate.</p>
+        <p class="copyright">&copy; <span id="year">2026</span> Chocomania. Made with love &amp; chocolate.</p>
+        <p class="footer-links">
+            <a class="footer-app-link" href="https://app.chocomania.in/">
+                <i class="ph-fill ph-storefront" aria-hidden="true"></i>
+                Team &amp; Orders App
+                <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+        </p>
     </footer>
 
     <!-- Tally popup widget -->

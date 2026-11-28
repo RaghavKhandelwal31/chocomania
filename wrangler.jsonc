@@ -1,0 +1,19 @@
+{
+  "name": "chocomania",
+  "compatibility_date": "2026-11-23",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "chocomania.in",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": "."
+  },
+  "observability": {
+    "logs": {
+      "enabled": true
+    }
+  }
+}
